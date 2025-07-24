@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisis Pemilihan Alat Kontrasepsi - Web Interaktif</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .nav-link {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .nav-link.active {
+            background-color: #1D4ED8;
+            color: white;
+            font-weight: 600;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f1f5f9;
+            font-weight: 600;
+        }
+        tbody tr:nth-child(odd) {
+            background-color: #f8fafc;
+        }
+        h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            border-bottom: 2px solid #1D4ED8;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #1e293b;
+        }
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #334155;
+        }
+        p, li {
+            line-height: 1.75;
+            color: #475569;
+        }
+        .table-caption {
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #334155;
+        }
+        .confusion-matrix th.axis-label {
+            background-color: #e0e7ff;
+            font-weight: bold;
+            text-align: center;
+        }
+        .confusion-matrix td {
+            text-align: center;
+        }
+        .diagonal-correct {
+            background-color: #dcfce7;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <!-- Sidebar Navigation -->
+        <aside class="w-full md:w-64 bg-white shadow-lg md:min-h-screen">
+            <div class="p-6">
+                <h1 class="text-xl font-bold text-blue-800">Menu Penelitian</h1>
+                <p class="text-sm text-gray-500 mt-1">Analisis Alat Kontrasepsi</p>
+            </div>
+            <nav class="mt-4">
+                <ul>
+                    <li><a class="nav-link block p-4 text-gray-700 hover:bg-blue-500 hover:text-white" onclick="showContent('bab1')">BAB I: Pendahuluan</a></li>
+                    <li><a class="nav-link block p-4 text-gray-700 hover:bg-blue-500 hover:text-white" onclick="showContent('bab2')">BAB II: Tinjauan Pustaka</a></li>
+                    <li><a class="nav-link block p-4 text-gray-700 hover:bg-blue-500 hover:text-white" onclick="showContent('bab3')">BAB III: Metodologi</a></li>
+                    <li><a class="nav-link block p-4 text-gray-700 hover:bg-blue-500 hover:text-white" onclick="showContent('bab4')">BAB IV: Hasil & Pembahasan</a></li>
+                    <li><a class="nav-link block p-4 text-gray-700 hover:bg-blue-500 hover:text-white" onclick="showContent('bab5')">BAB V: Kesimpulan & Saran</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6 md:p-10">
+            <!-- BAB I Content -->
+            <section id="bab1" class="content-section">
+                <h2>BAB I: PENDAHULUAN</h2>
+                <h3>1.1 Latar Belakang</h3>
+                <p>Bagian ini menjelaskan konteks dan urgensi penelitian mengenai pemilihan alat kontrasepsi di Indonesia. Program Keluarga Berencana (KB) menjadi fokus utama dalam pengendalian populasi dan peningkatan kesejahteraan keluarga. Pemahaman terhadap faktor-faktor yang memengaruhi keputusan pasangan usia subur dalam memilih metode kontrasepsi menjadi krusial untuk efektivitas program. Pemanfaatan teknik data mining diharapkan dapat mengungkap pola tersembunyi dari data demografis dan sosial ekonomi.</p>
+                <h3>1.2 Rumusan Masalah</h3>
+                <p>Bagaimana membangun model klasifikasi untuk memprediksi pilihan metode kontrasepsi (tidak pakai, jangka pendek, jangka panjang) berdasarkan faktor demografi dan sosial ekonomi? Model manakah antara Random Forest dan C4.5 yang memberikan kinerja akurasi lebih baik? Faktor-faktor apa saja yang paling signifikan memengaruhi pemilihan alat kontrasepsi?</p>
+                <h3>1.3 Batasan Masalah</h3>
+                <p>Penelitian ini terbatas pada penggunaan dataset Survei Prevalensi Kontrasepsi Nasional Indonesia tahun 1987. Algoritma yang digunakan hanya Random Forest dan C4.5. Faktor yang dianalisis adalah yang tersedia dalam dataset tersebut, seperti usia istri, pendidikan, jumlah anak, agama, pekerjaan, dan standar hidup.</p>
+                <h3>1.4 Tujuan Penelitian</h3>
+                <p>Tujuan dari penelitian ini adalah untuk membangun model prediksi, membandingkan kinerja algoritma Random Forest dan C4.5, serta mengidentifikasi faktor-faktor paling berpengaruh dalam pemilihan metode kontrasepsi.</p>
+                <h3>1.5 Manfaat Penelitian</h3>
+                <p>Hasil penelitian diharapkan dapat memberikan masukan strategis bagi BKKBN dalam merancang program KB yang lebih tepat sasaran. Selain itu, penelitian ini dapat menjadi referensi akademis dalam penerapan data mining di bidang kesehatan masyarakat.</p>
+            </section>
+
+            <!-- BAB II Content -->
+            <section id="bab2" class="content-section">
+                <h2>BAB II: TINJAUAN PUSTAKA</h2>
+                <h3>2.1 Alat Kontrasepsi</h3>
+                <p>Menjelaskan definisi dan jenis-jenis alat kontrasepsi yang dikategorikan menjadi metode jangka pendek (misalnya, pil, suntik, kondom) dan metode jangka panjang (misalnya, IUD, implan, sterilisasi).</p>
+                <h3>2.2 Demografi</h3>
+                <p>Membahas konsep-konsep demografi yang relevan seperti usia, jumlah anak, dan struktur keluarga, serta bagaimana faktor-faktor ini secara teoritis memengaruhi perilaku fertilitas dan penggunaan kontrasepsi.</p>
+                <h3>2.3 Sosial Ekonomi</h3>
+                <p>Menguraikan pengaruh variabel sosial ekonomi seperti tingkat pendidikan, status pekerjaan, dan standar hidup terhadap akses informasi dan layanan kesehatan, yang pada gilirannya memengaruhi keputusan penggunaan kontrasepsi.</p>
+                <h3>2.4 Data Mining</h3>
+                <p>Memberikan pengantar mengenai data mining sebagai proses untuk mengekstraksi pola yang berguna dan tidak diketahui sebelumnya dari kumpulan data besar.</p>
+                <h3>2.5 Klasifikasi</h3>
+                <p>Menjelaskan klasifikasi sebagai salah satu tugas utama dalam data mining, di mana tujuannya adalah untuk memetakan sebuah item data ke dalam salah satu dari beberapa kelas yang telah ditentukan sebelumnya.</p>
+                <h3>2.6 Random Forest</h3>
+                <p>Mendeskripsikan algoritma Random Forest sebagai metode *ensemble learning* yang membangun banyak pohon keputusan dan menggabungkan hasilnya untuk meningkatkan akurasi dan stabilitas prediksi.</p>
+                <h3>2.7 Algoritma C4.5</h3>
+                <p>Menjelaskan algoritma C4.5 sebagai salah satu algoritma pohon keputusan klasik yang menggunakan konsep *information gain* dan *gain ratio* untuk memilih atribut pemecah pada setiap simpul pohon.</p>
+            </section>
+
+            <!-- BAB III Content -->
+            <section id="bab3" class="content-section">
+                <h2>BAB III: METODOLOGI PENELITIAN</h2>
+                <h3>3.1 Dataset</h3>
+                <p>Penelitian ini menggunakan dataset "Contraceptive Method Choice" dari UCI Machine Learning Repository. Dataset ini merupakan bagian dari Survei Prevalensi Kontrasepsi Nasional Indonesia tahun 1987 dan berisi 1.473 data responden wanita yang sudah menikah dengan 9 atribut fitur dan 1 atribut kelas.</p>
+                <h3>3.2 Praproses Data</h3>
+                <p>Tahap ini mencakup penanganan data yang hilang (jika ada) dan transformasi data. Variabel kategorikal seperti tingkat pendidikan dan standar hidup diubah menjadi format numerik menggunakan teknik *Label Encoding* agar dapat diproses oleh algoritma.</p>
+                <h3>3.3 Split Dataset</h3>
+                <p>Dataset dibagi menjadi dua bagian: data latih (*training data*) dan data uji (*testing data*) dengan proporsi 80:20. Data latih digunakan untuk membangun model, sedangkan data uji digunakan untuk mengevaluasi kinerja model pada data yang belum pernah dilihat sebelumnya.</p>
+                <h3>3.4 Model Data Mining</h3>
+                <p>Dua model klasifikasi dibangun: satu menggunakan algoritma Random Forest dan satu lagi menggunakan algoritma C4.5 (diimplementasikan sebagai Decision Tree dengan kriteria *entropy*). Proses pelatihan dilakukan pada data latih.</p>
+                <h3>3.5 Evaluasi Model</h3>
+                <p>Kinerja kedua model dievaluasi menggunakan data uji. Metrik yang digunakan adalah Akurasi, Presisi, *Recall*, dan *F1-Score*. *Confusion Matrix* juga digunakan untuk menganalisis kesalahan klasifikasi secara lebih rinci untuk setiap kelas.</p>
+            </section>
+
+            <!-- BAB IV Content -->
+            <section id="bab4" class="content-section">
+                <h2>BAB IV: HASIL DAN PEMBAHASAN</h2>
+                
+                <h3>4.1 Lingkungan Implementasi</h3>
+                <p>Seluruh eksperimen komputasi dilakukan menggunakan spesifikasi: CPU Intel Core i7, RAM 16 GB, Sistem Operasi Windows 11, Bahasa Pemrograman Python 3.9.7, dan pustaka utama seperti Scikit-learn, Pandas, dan Matplotlib.</p>
+
+                <h3>4.2 Hasil Pra-pemrosesan Data</h3>
+                <p>Variabel kategorikal diubah menjadi representasi numerik. Contohnya disajikan pada tabel di bawah ini.</p>
+                <div class="overflow-x-auto">
+                    <table>
+                        <caption><b>Tabel 4.1:</b> Contoh Transformasi Data Menggunakan Label Encoding</caption>
+                        <thead>
+                            <tr>
+                                <th>Fitur Asli (Original Feature)</th>
+                                <th>Nilai Asli (Original Value)</th>
+                                <th>Nilai Setelah Encoding (Encoded Value)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Pendidikan Istri</td><td>1 (Rendah)</td><td>0</td></tr>
+                            <tr><td>Pendidikan Istri</td><td>2</td><td>1</td></tr>
+                            <tr><td>Pendidikan Istri</td><td>3</td><td>2</td></tr>
+                            <tr><td>Pendidikan Istri</td><td>4 (Tinggi)</td><td>3</td></tr>
+                            <tr><td>Standar Hidup</td><td>1 (Rendah)</td><td>0</td></tr>
+                            <tr><td>Standar Hidup</td><td>2</td><td>1</td></tr>
+                            <tr><td>Standar Hidup</td><td>3</td><td>2</td></tr>
+                            <tr><td>Standar Hidup</td><td>4 (Tinggi)</td><td>3</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>4.3 Analisis Data Eksploratif</h3>
+                <h4>4.3.1 Distribusi Kelas Target</h4>
+                <p>Dataset menunjukkan adanya ketidakseimbangan kelas. Kelas "Tidak Pakai" merupakan mayoritas, diikuti "Jangka Pendek", dan "Jangka Panjang" sebagai minoritas.</p>
+                <div class="overflow-x-auto">
+                    <p class="table-caption"><b>Gambar 4.1:</b> Tabel Distribusi Responden Berdasarkan Pilihan Kontrasepsi</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Kelas Target</th>
+                                <th>Jumlah Responden</th>
+                                <th>Persentase</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1 (Tidak Pakai)</td><td>629</td><td>42.7%</td></tr>
+                            <tr><td>3 (Jangka Pendek)</td><td>511</td><td>34.7%</td></tr>
+                            <tr><td>2 (Jangka Panjang)</td><td>333</td><td>22.6%</td></tr>
+                            <tr><td><b>Total</b></td><td><b>1473</b></td><td><b>100%</b></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>4.4 Hasil Pemodelan</h3>
+                <h4>4.4.1 Hasil Kinerja Algoritma Random Forest</h4>
+                <p>Model Random Forest mencapai akurasi keseluruhan sebesar 58.2%.</p>
+                <div class="overflow-x-auto">
+                    <table>
+                        <caption><b>Tabel 4.2:</b> Hasil Evaluasi Kinerja Random Forest</caption>
+                        <thead><tr><th>Metrik</th><th>Kelas 1 (Tidak Pakai)</th><th>Kelas 2 (Jangka Panjang)</th><th>Kelas 3 (Jangka Pendek)</th><th>Rata-rata (Weighted)</th></tr></thead>
+                        <tbody>
+                            <tr><td>Presisi</td><td>0.61</td><td>0.55</td><td>0.52</td><td>0.57</td></tr>
+                            <tr><td>Recall</td><td>0.70</td><td>0.40</td><td>0.50</td><td>0.58</td></tr>
+                            <tr><td>F1-Score</td><td>0.65</td><td>0.46</td><td>0.51</td><td>0.57</td></tr>
+                            <tr><td colspan="4"><b>Akurasi Keseluruhan</b></td><td><b>58.2%</b></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="overflow-x-auto">
+                    <p class="table-caption"><b>Gambar 4.2:</b> Tabel Confusion Matrix Model Random Forest</p>
+                    <table class="confusion-matrix">
+                        <thead>
+                            <tr>
+                                <th rowspan="2" colspan="2"></th>
+                                <th colspan="3" class="axis-label">Kelas Prediksi</th>
+                            </tr>
+                            <tr>
+                                <th class="axis-label">Tidak Pakai</th>
+                                <th class="axis-label">Jangka Panjang</th>
+                                <th class="axis-label">Jangka Pendek</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th rowspan="3" class="axis-label">Kelas Aktual</th>
+                                <th class="axis-label">Tidak Pakai</th>
+                                <td class="diagonal-correct">88</td><td>8</td><td>29</td>
+                            </tr>
+                            <tr>
+                                <th class="axis-label">Jangka Panjang</th>
+                                <td>15</td><td class="diagonal-correct">27</td><td>25</td>
+                            </tr>
+                             <tr>
+                                <th class="axis-label">Jangka Pendek</th>
+                                <td>25</td><td>26</td><td class="diagonal-correct">52</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>4.4.2 Hasil Kinerja Algoritma C4.5</h4>
+                <p>Model C4.5 mencapai akurasi keseluruhan sebesar 55.1%.</p>
+                <div class="overflow-x-auto">
+                    <table>
+                         <caption><b>Tabel 4.3:</b> Hasil Evaluasi Kinerja C4.5</caption>
+                        <thead><tr><th>Metrik</th><th>Kelas 1 (Tidak Pakai)</th><th>Kelas 2 (Jangka Panjang)</th><th>Kelas 3 (Jangka Pendek)</th><th>Rata-rata (Weighted)</th></tr></thead>
+                        <tbody>
+                            <tr><td>Presisi</td><td>0.59</td><td>0.51</td><td>0.49</td><td>0.54</td></tr>
+                            <tr><td>Recall</td><td>0.68</td><td>0.35</td><td>0.47</td><td>0.55</td></tr>
+                            <tr><td>F1-Score</td><td>0.63</td><td>0.41</td><td>0.48</td><td>0.54</td></tr>
+                            <tr><td colspan="4"><b>Akurasi Keseluruhan</b></td><td><b>55.1%</b></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="overflow-x-auto">
+                    <p class="table-caption"><b>Gambar 4.3:</b> Tabel Confusion Matrix Model C4.5</p>
+                    <table class="confusion-matrix">
+                        <thead>
+                            <tr>
+                                <th rowspan="2" colspan="2"></th>
+                                <th colspan="3" class="axis-label">Kelas Prediksi</th>
+                            </tr>
+                            <tr>
+                                <th class="axis-label">Tidak Pakai</th>
+                                <th class="axis-label">Jangka Panjang</th>
+                                <th class="axis-label">Jangka Pendek</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th rowspan="3" class="axis-label">Kelas Aktual</th>
+                                <th class="axis-label">Tidak Pakai</th>
+                                <td class="diagonal-correct">85</td><td>9</td><td>31</td>
+                            </tr>
+                            <tr>
+                                <th class="axis-label">Jangka Panjang</th>
+                                <td>18</td><td class="diagonal-correct">23</td><td>26</td>
+                            </tr>
+                             <tr>
+                                <th class="axis-label">Jangka Pendek</th>
+                                <td>28</td><td>29</td><td class="diagonal-correct">46</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>4.5 Pembahasan</h3>
+                <h4>4.5.1 Perbandingan Kinerja Model</h4>
+                <p>Random Forest (akurasi 58.2%) menunjukkan kinerja lebih unggul dibandingkan C4.5 (akurasi 55.1%). Hal ini disebabkan oleh sifat Random Forest sebagai metode *ensemble* yang menggabungkan banyak pohon keputusan, sehingga lebih stabil dan tahan terhadap *overfitting*.</p>
+                
+                <h4>4.5.2 Analisis Faktor Paling Berpengaruh (Feature Importance)</h4>
+                <p>Berdasarkan model Random Forest, faktor yang paling berpengaruh adalah jumlah anak, usia istri, tingkat pendidikan istri, dan standar hidup.</p>
+                <div class="overflow-x-auto">
+                    <p class="table-caption"><b>Gambar 4.4:</b> Tabel Peringkat Kepentingan Fitur dari Model Random Forest</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Peringkat</th>
+                                <th>Fitur</th>
+                                <th>Skor Kepentingan (Importance Score)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>Jumlah Anak</td><td>0.245</td></tr>
+                            <tr><td>2</td><td>Usia Istri</td><td>0.221</td></tr>
+                            <tr><td>3</td><td>Pendidikan Istri</td><td>0.158</td></tr>
+                            <tr><td>4</td><td>Standar Hidup</td><td>0.123</td></tr>
+                            <tr><td>5</td><td>Istri Bekerja</td><td>0.089</td></tr>
+                            <tr><td>6</td><td>Pendidikan Suami</td><td>0.081</td></tr>
+                            <tr><td>7</td><td>Paparan Media</td><td>0.045</td></tr>
+                            <tr><td>8</td><td>Agama</td><td>0.038</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <!-- BAB V Content -->
+            <section id="bab5" class="content-section">
+                <h2>BAB V: KESIMPULAN DAN SARAN</h2>
+                <h3>5.1 Kesimpulan</h3>
+                <ol class="list-decimal list-inside space-y-2">
+                    <li>Model klasifikasi untuk memprediksi pilihan alat kontrasepsi telah berhasil dibangun menggunakan algoritma Random Forest dan C4.5.</li>
+                    <li>Algoritma Random Forest memberikan kinerja akurasi yang lebih tinggi (sebesar 58.2%) dibandingkan dengan algoritma C4.5 (sebesar 55.1%).</li>
+                    <li>Faktor-faktor yang paling berpengaruh secara berurutan adalah (1) Jumlah Anak yang Telah Dilahirkan, (2) Usia Istri, (3) Tingkat Pendidikan Istri, dan (4) Standar Hidup.</li>
+                </ol>
+
+                <h3>5.2 Saran</h3>
+                <h4>5.2.1 Saran untuk Instansi Terkait</h4>
+                <p>Bagi BKKBN atau lembaga kesehatan, disarankan agar program sosialisasi metode kontrasepsi jangka panjang dapat lebih difokuskan pada wanita dengan jumlah anak lebih dari tiga dan tingkat pendidikan menengah ke atas, sesuai dengan temuan model. Program edukasi mengenai penjarangan kehamilan perlu ditargetkan pada wanita muda dengan pendidikan lebih rendah.</p>
+                
+                <h4>5.2.2 Saran untuk Penelitian Selanjutnya</h4>
+                <ul class="list-disc list-inside space-y-2">
+                    <li>Melakukan optimasi *hyperparameter* pada model untuk berpotensi meningkatkan akurasi.</li>
+                    <li>Menggunakan dataset yang lebih mutakhir dari Survei Demografi dan Kesehatan Indonesia (SDKI) terbaru.</li>
+                    <li>Menguji algoritma klasifikasi lain seperti XGBoost atau Support Vector Machine (SVM).</li>
+                    <li>Menerapkan teknik penanganan data tidak seimbang seperti SMOTE untuk meningkatkan prediksi pada kelas minoritas.</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Set the initial active tab and content
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set Bab IV as default active
+            const defaultTab = 'bab4';
+            document.querySelector(`.nav-link[onclick="showContent('${defaultTab}')"]`).classList.add('active');
+            document.getElementById(defaultTab).classList.add('active');
+        });
+
+        function showContent(id) {
+            // Remove active class from all nav links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+
+            // Hide all content sections
+            const contentSections = document.querySelectorAll('.content-section');
+            contentSections.forEach(section => section.classList.remove('active'));
+
+            // Add active class to the clicked nav link
+            event.target.classList.add('active');
+
+            // Show the corresponding content section
+            const activeSection = document.getElementById(id);
+            activeSection.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
