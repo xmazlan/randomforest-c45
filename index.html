@@ -184,7 +184,24 @@
                 <h4>4.3.1 Distribusi Kelas Target</h4>
                 <p>Dataset menunjukkan adanya ketidakseimbangan kelas. Kelas "Tidak Pakai" merupakan mayoritas (42.7%), diikuti "Jangka Pendek" (34.7%), dan "Jangka Panjang" (22.6%) sebagai minoritas.</p>
                 <div class="image-container">
-                    <img src="https://placehold.co/600x400/3B82F6/FFFFFF?text=Gambar+4.1\nDistribusi+Kelas+Target" alt="[Gambar distribusi kelas target]">
+                    <div class="overflow-x-auto">
+                        <p class="table-caption"><b>Gambar 4.1:</b> Tabel Distribusi Responden Berdasarkan Pilihan Kontrasepsi</p>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Kelas Target</th>
+                                    <th>Jumlah Responden</th>
+                                    <th>Persentase</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>1 (Tidak Pakai)</td><td>629</td><td>42.7%</td></tr>
+                                <tr><td>3 (Jangka Pendek)</td><td>511</td><td>34.7%</td></tr>
+                                <tr><td>2 (Jangka Panjang)</td><td>333</td><td>22.6%</td></tr>
+                                <tr><td><b>Total</b></td><td><b>1473</b></td><td><b>100%</b></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <figcaption><b>Gambar 4.1:</b> Distribusi Responden Berdasarkan Pilihan Kontrasepsi</figcaption>
                 </div>
 
@@ -204,7 +221,37 @@
                     </table>
                 </div>
                 <div class="image-container">
-                    <img src="https://placehold.co/500x350/10B981/FFFFFF?text=Gambar+4.2\nConfusion+Matrix+Random+Forest" alt="[Gambar confusion matrix Random Forest]">
+                    <div class="overflow-x-auto">
+                        <p class="table-caption"><b>Gambar 4.2:</b> Tabel Confusion Matrix Model Random Forest</p>
+                        <table class="confusion-matrix">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2" colspan="2"></th>
+                                    <th colspan="3" class="axis-label">Kelas Prediksi</th>
+                                </tr>
+                                <tr>
+                                    <th class="axis-label">Tidak Pakai</th>
+                                    <th class="axis-label">Jangka Panjang</th>
+                                    <th class="axis-label">Jangka Pendek</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th rowspan="3" class="axis-label">Kelas Aktual</th>
+                                    <th class="axis-label">Tidak Pakai</th>
+                                    <td class="diagonal-correct">88</td><td>8</td><td>29</td>
+                                </tr>
+                                <tr>
+                                    <th class="axis-label">Jangka Panjang</th>
+                                    <td>15</td><td class="diagonal-correct">27</td><td>25</td>
+                                </tr>
+                                 <tr>
+                                    <th class="axis-label">Jangka Pendek</th>
+                                    <td>25</td><td>26</td><td class="diagonal-correct">52</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <figcaption><b>Gambar 4.2:</b> Confusion Matrix Model Random Forest</figcaption>
                 </div>
 
@@ -223,7 +270,37 @@
                     </table>
                 </div>
                  <div class="image-container">
-                    <img src="https://placehold.co/500x350/F97316/FFFFFF?text=Gambar+4.3\nConfusion+Matrix+C4.5" alt="[Gambar confusion matrix C4.5]">
+                    <div class="overflow-x-auto">
+                        <p class="table-caption"><b>Gambar 4.3:</b> Tabel Confusion Matrix Model C4.5</p>
+                        <table class="confusion-matrix">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2" colspan="2"></th>
+                                    <th colspan="3" class="axis-label">Kelas Prediksi</th>
+                                </tr>
+                                <tr>
+                                    <th class="axis-label">Tidak Pakai</th>
+                                    <th class="axis-label">Jangka Panjang</th>
+                                    <th class="axis-label">Jangka Pendek</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th rowspan="3" class="axis-label">Kelas Aktual</th>
+                                    <th class="axis-label">Tidak Pakai</th>
+                                    <td class="diagonal-correct">85</td><td>9</td><td>31</td>
+                                </tr>
+                                <tr>
+                                    <th class="axis-label">Jangka Panjang</th>
+                                    <td>18</td><td class="diagonal-correct">23</td><td>26</td>
+                                </tr>
+                                 <tr>
+                                    <th class="axis-label">Jangka Pendek</th>
+                                    <td>28</td><td>29</td><td class="diagonal-correct">46</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <figcaption><b>Gambar 4.3:</b> Confusion Matrix Model C4.5</figcaption>
                 </div>
 
@@ -234,7 +311,28 @@
                 <h4>4.5.2 Analisis Faktor Paling Berpengaruh (Feature Importance)</h4>
                 <p>Berdasarkan model Random Forest, faktor yang paling berpengaruh adalah jumlah anak, usia istri, tingkat pendidikan istri, dan standar hidup.</p>
                 <div class="image-container">
-                    <img src="https://placehold.co/700x450/8B5CF6/FFFFFF?text=Gambar+4.4\nFeature+Importance" alt="[Gambar feature importance]">
+                    <div class="overflow-x-auto">
+                        <p class="table-caption"><b>Gambar 4.4:</b> Tabel Peringkat Kepentingan Fitur dari Model Random Forest</p>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Peringkat</th>
+                                    <th>Fitur</th>
+                                    <th>Skor Kepentingan (Importance Score)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>1</td><td>Jumlah Anak</td><td>0.245</td></tr>
+                                <tr><td>2</td><td>Usia Istri</td><td>0.221</td></tr>
+                                <tr><td>3</td><td>Pendidikan Istri</td><td>0.158</td></tr>
+                                <tr><td>4</td><td>Standar Hidup</td><td>0.123</td></tr>
+                                <tr><td>5</td><td>Istri Bekerja</td><td>0.089</td></tr>
+                                <tr><td>6</td><td>Pendidikan Suami</td><td>0.081</td></tr>
+                                <tr><td>7</td><td>Paparan Media</td><td>0.045</td></tr>
+                                <tr><td>8</td><td>Agama</td><td>0.038</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <figcaption><b>Gambar 4.4:</b> Peringkat Kepentingan Fitur dari Model Random Forest</figcaption>
                 </div>
             </section>
